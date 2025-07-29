@@ -44,4 +44,4 @@ This project is an implementation of the TaskFlow test, a MERN stack task manage
 - Please make sure that your repository is **public** or share access if it's private.
 
 4. **Deadline**:
-  1 ~ 2 hours
+  45min ~ 1 hour
