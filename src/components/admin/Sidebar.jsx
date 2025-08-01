@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChartPie, FaUsers, FaTasks, FaCog } from "react-icons/fa";
 import { useAuth } from "../../contexts/AuthContext";
+import { Logs } from "lucide-react";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const Sidebar = () => {
     { path: "/admin/dashboard", label: "Dashboard", icon: <FaChartPie /> },
     { path: "/admin/manage-users", label: "Manage Users", icon: <FaUsers /> },
     { path: "/admin/manage-tasks", label: "Manage Tasks", icon: <FaTasks /> },
+    { path: "/admin/user-logs", label: "User Logs", icon: <Logs /> },
     { path: "/admin/settings", label: "Settings", icon: <FaCog /> },
   ];
   const filteredMenuItems = isAuthenticated
