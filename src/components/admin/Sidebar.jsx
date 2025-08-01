@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChartPie, FaUsers, FaTasks, FaCog } from "react-icons/fa";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Sidebar = () => {
   const location = useLocation();
+  const { user } = useAuth();
+
+  const isAuthenticated = !!user || !!localStorage.getItem("token");
 
   // Sidebar menu items with icons
   const menuItems = [
@@ -12,13 +16,18 @@ const Sidebar = () => {
     { path: "/admin/manage-tasks", label: "Manage Tasks", icon: <FaTasks /> },
     { path: "/admin/settings", label: "Settings", icon: <FaCog /> },
   ];
+  const filteredMenuItems = isAuthenticated
+    ? menuItems
+    : menuItems.filter((item) => item.label === "Dashboard");
 
   return (
     <div className="w-64 min-h-screen p-6 bg-gray-900 text-white glassmorphism border-r border-gray-700">
-      <h2 className="text-2xl font-extrabold text-center text-gray-100 tracking-wide mb-6">⚙️ Admin Panel</h2>
+      <h2 className="text-2xl font-extrabold text-center text-gray-100 tracking-wide mb-6">
+        ⚙️ Admin Panel
+      </h2>
 
       <ul className="space-y-3">
-        {menuItems.map(({ path, label, icon }) => (
+        {filteredMenuItems?.map(({ path, label, icon }) => (
           <li key={path}>
             <Link
               to={path}
